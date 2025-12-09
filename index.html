@@ -14,52 +14,27 @@
   <div class="sky">
     <div class="app">
       <header class="app-header">
-        <div class="title">Cat Feeding Companion</div>
-        <p class="subtitle">Time the next meal, get a playful reminder, and keep your cats happily on schedule.</p>
+        <div id="hero-cat" class="cat-crest" aria-hidden="true">
+          <span class="cat-emoji">😺</span>
+        </div>
+        <div class="title-group">
+          <div class="title">Sunny the well-fed orange cat</div>
+          <p id="cat-status-line" class="subtitle">Your cats lounge in their cozy habitat—scratching posts, bowls, and toys ready. Keep their meal time tidy.</p>
+        </div>
       </header>
 
       <div class="layout">
-        <section class="cats">
-          <div class="cat-lounge">
-            <div class="cat-lounge__scene">
-              <div class="cat-lounge__cat" aria-hidden="true">
-                <div class="cat-lounge__ear cat-lounge__ear--left"></div>
-                <div class="cat-lounge__ear cat-lounge__ear--right"></div>
-                <div class="cat-lounge__face">😺</div>
-              </div>
-              <div class="cat-lounge__nameplate">Sunny the well-fed orange cat</div>
-              <div class="cat-lounge__props" aria-hidden="true">
-                <span class="prop prop-bowl">🍲</span>
-                <span class="prop prop-scratch">🪵</span>
-                <span class="prop prop-toy">🪶</span>
-                <span class="prop prop-nip">🌿</span>
-              </div>
-            </div>
-            <p class="cat-lounge__caption">Your cats lounge in their cozy habitat—scratching posts, bowls, and toys ready. Keep their meal plan tidy below.</p>
+        <section class="left-stack">
+          <div class="info-card">
+            <div class="info-title">Cat box activity log</div>
+            <p class="info-body">Cats keep this tidy ledger for you.</p>
+            <p class="info-body">Cats are lounging in their cozy habitat with cute scratch boards, bowls, and cat nips.</p>
           </div>
 
-          <div class="cat-card cat-chef">
-            <div class="cat-figure">
-              <span class="cat-emoji" aria-hidden="true">😺</span>
-              <span class="cat-prop" aria-hidden="true">🍲</span>
-            </div>
-            <div class="cat-shadow" aria-hidden="true"></div>
-            <p id="cat-status-line" class="cat-hero__line">Set a timer and watch the big orange cat wiggle.</p>
-          </div>
-
-          <div class="action-tracker">
+          <div class="action-card">
             <div class="action-header">
               <div class="control-title">Cat box activity log</div>
-              <p class="action-helper">See what you've done with the timer. The cats keep this ledger tidy for you.</p>
-            </div>
-            <p class="cat-line" id="cat-message-secondary">I'll keep watch like a tiny maître d'. You'll hear from me when it's
-feeding time.</p>
-          </div>
-
-          <div class="action-tracker">
-            <div class="action-header">
-              <div class="control-title">Cat box activity log</div>
-              <p class="action-helper">See what you've done with the timer. The cats keep this ledger tidy for you.</p>
+              <p class="action-helper">Cats keep this tidy ledger for you.</p>
             </div>
             <ul id="action-log" class="action-log" aria-live="polite" aria-label="Recent actions"></ul>
           </div>

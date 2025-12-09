@@ -105,25 +105,34 @@ function updateCatLines(state) {
   var cat = $('#hero-cat');
   var line = $('#cat-status-line');
   if (!cat.length || !line.length) return;
-  cat.removeClass('cat--running cat--done cat--idle');
+  cat.removeClass('cat--running cat--done cat--nudge');
   switch (state) {
     case 'running':
       cat.addClass('cat--running');
-      line.text("Timer is ticking—I'm pacing by the bowl!");
+      line.text('Timer is ticking—the big orange cat is pacing around the bowls.');
       break;
     case 'done':
       cat.addClass('cat--done');
-      line.text('Ding! Snack time—fill my bowl, please.');
+      line.text('Ding! Snack time—fill the bowls and tidy the cat boxes.');
       break;
     case 'paused':
     default:
-      cat.addClass('cat--idle');
-      line.text('Set a timer and watch the big orange cat wiggle.');
+      line.text('Your cats lounge in their cozy habitat—scratching posts, bowls, and toys ready. Keep their meal time tidy.');
       break;
   }
 }
 
+function nudgeCat() {
+  var cat = $('#hero-cat');
+  if (!cat.length) return;
+  cat.addClass('cat--nudge');
+  setTimeout(function () {
+    cat.removeClass('cat--nudge');
+  }, 700);
+}
+
 function adjust(it, v, label) {
+  nudgeCat();
   if (isBlink) {
     $('#timer').removeClass('blinking');
     isBlink = false;
