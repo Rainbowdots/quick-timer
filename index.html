@@ -20,6 +20,24 @@
 
       <div class="layout">
         <section class="cats">
+          <div class="cat-lounge">
+            <div class="cat-lounge__scene">
+              <div class="cat-lounge__cat" aria-hidden="true">
+                <div class="cat-lounge__ear cat-lounge__ear--left"></div>
+                <div class="cat-lounge__ear cat-lounge__ear--right"></div>
+                <div class="cat-lounge__face">😺</div>
+              </div>
+              <div class="cat-lounge__nameplate">Sunny the well-fed orange cat</div>
+              <div class="cat-lounge__props" aria-hidden="true">
+                <span class="prop prop-bowl">🍲</span>
+                <span class="prop prop-scratch">🪵</span>
+                <span class="prop prop-toy">🪶</span>
+                <span class="prop prop-nip">🌿</span>
+              </div>
+            </div>
+            <p class="cat-lounge__caption">Your cats lounge in their cozy habitat—scratching posts, bowls, and toys ready. Keep their meal plan tidy below.</p>
+          </div>
+
           <div class="cat-card cat-chef">
             <div class="cat-figure">
               <span class="cat-emoji" aria-hidden="true">😺</span>
@@ -32,7 +50,16 @@
               <span class="cat-emoji" aria-hidden="true">😼</span>
               <span class="cat-prop" aria-hidden="true">📋</span>
             </div>
-            <p class="cat-line" id="cat-message-secondary">I'll keep watch like a tiny maître d'. You'll hear from me when it's feeding time.</p>
+            <p class="cat-line" id="cat-message-secondary">I'll keep watch like a tiny maître d'. You'll hear from me when it's
+feeding time.</p>
+          </div>
+
+          <div class="action-tracker">
+            <div class="action-header">
+              <div class="control-title">Cat box activity log</div>
+              <p class="action-helper">See what you've done with the timer. The cats keep this ledger tidy for you.</p>
+            </div>
+            <ul id="action-log" class="action-log" aria-live="polite" aria-label="Recent actions"></ul>
           </div>
         </section>
 
@@ -53,34 +80,34 @@
           <div class="controls presets">
             <div class="control-title">Meal presets</div>
             <div class="btn-grid">
-              <button class="btn btn-success fbtn" id="preset-snack" onclick="adjust(0,900)">Quick snack · 15m</button>
-              <button class="btn btn-success fbtn" id="preset-breakfast" onclick="adjust(0,1800)">Breakfast · 30m</button>
-              <button class="btn btn-success fbtn" id="preset-lunch" onclick="adjust(0,3600)">Lunch · 1h</button>
-              <button class="btn btn-success fbtn" id="preset-dinner" onclick="adjust(0,14400)">Dinner · 4h</button>
+              <button class="btn btn-success fbtn" id="preset-snack" onclick="adjust(0,900,'Preset: quick snack (15m)')">Quick snack · 15m</button>
+              <button class="btn btn-success fbtn" id="preset-breakfast" onclick="adjust(0,1800,'Preset: breakfast (30m)')">Breakfast · 30m</button>
+              <button class="btn btn-success fbtn" id="preset-lunch" onclick="adjust(0,3600,'Preset: lunch (1h)')">Lunch · 1h</button>
+              <button class="btn btn-success fbtn" id="preset-dinner" onclick="adjust(0,14400,'Preset: dinner (4h)')">Dinner · 4h</button>
             </div>
           </div>
 
           <div class="controls nudges">
             <div class="control-title">Nudges</div>
             <div class="btn-grid">
-              <button class="btn btn-info fbtn" id="min300" onclick="adjust(-300)">-5 min</button>
-              <button class="btn btn-info fbtn" id="min60" onclick="adjust(-60)">-1 min</button>
-              <button class="btn btn-info fbtn" id="add60" onclick="adjust(60)">+1 min</button>
-              <button class="btn btn-info fbtn" id="add300" onclick="adjust(300)">+5 min</button>
+              <button class="btn btn-info fbtn" id="min300" onclick="adjust(-300,null,'Nudge: -5 minutes')">-5 min</button>
+              <button class="btn btn-info fbtn" id="min60" onclick="adjust(-60,null,'Nudge: -1 minute')">-1 min</button>
+              <button class="btn btn-info fbtn" id="add60" onclick="adjust(60,null,'Nudge: +1 minute')">+1 min</button>
+              <button class="btn btn-info fbtn" id="add300" onclick="adjust(300,null,'Nudge: +5 minutes')">+5 min</button>
             </div>
           </div>
 
           <div class="controls micro">
             <div class="control-title">Fine tune</div>
             <div class="btn-grid">
-              <button class="btn btn-success fbtn" onclick="adjust(0,300)">Tea break · 5m</button>
-              <button class="btn btn-success fbtn" onclick="adjust(0,600)">Stretch · 10m</button>
-              <button class="btn btn-success fbtn" onclick="adjust(0,900)">Story time · 15m</button>
-              <button class="btn btn-success fbtn" onclick="adjust(0,1200)">Nap · 20m</button>
-              <button class="btn btn-success fbtn" onclick="adjust(0,1500)">Grooming · 25m</button>
-              <button class="btn btn-success fbtn" onclick="adjust(0,1800)">Plate prep · 30m</button>
-              <button class="btn btn-success fbtn" onclick="adjust(0,2400)">Patrol · 40m</button>
-              <button class="btn btn-success fbtn" onclick="adjust(0,3600)">Window watch · 1h</button>
+              <button class="btn btn-success fbtn" onclick="adjust(0,300,'Preset: tea break (5m)')">Tea break · 5m</button>
+              <button class="btn btn-success fbtn" onclick="adjust(0,600,'Preset: stretch (10m)')">Stretch · 10m</button>
+              <button class="btn btn-success fbtn" onclick="adjust(0,900,'Preset: story time (15m)')">Story time · 15m</button>
+              <button class="btn btn-success fbtn" onclick="adjust(0,1200,'Preset: nap (20m)')">Nap · 20m</button>
+              <button class="btn btn-success fbtn" onclick="adjust(0,1500,'Preset: grooming (25m)')">Grooming · 25m</button>
+              <button class="btn btn-success fbtn" onclick="adjust(0,1800,'Preset: plate prep (30m)')">Plate prep · 30m</button>
+              <button class="btn btn-success fbtn" onclick="adjust(0,2400,'Preset: patrol (40m)')">Patrol · 40m</button>
+              <button class="btn btn-success fbtn" onclick="adjust(0,3600,'Preset: window watch (1h)')">Window watch · 1h</button>
             </div>
           </div>
         </section>

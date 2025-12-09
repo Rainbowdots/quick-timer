@@ -9,6 +9,7 @@ var stopBy = null;
 var delay = 1800000; // default 30 minutes
 var audioRemind = null;
 var audioEnd = null;
+var actionLog = [];
 
 function newAudio(file) {
   var node = new Audio();
@@ -32,6 +33,7 @@ function show() {
   isShow = !isShow;
   $('.fbtn').css('opacity', isShow ? '1.0' : '0.25');
   $('#hide').text(isShow ? 'Hide nudges' : 'Show nudges');
+  logAction(isShow ? 'Nudges revealed' : 'Nudges hidden');
 }
 
 function pad(num) {
@@ -58,6 +60,43 @@ function setTimerText(ms) {
   resize();
 }
 
+function describeSeconds(sec) {
+  if (sec % 3600 === 0) {
+    var hours = sec / 3600;
+    return hours + ' hour' + (hours === 1 ? '' : 's');
+  }
+  if (sec % 60 === 0) {
+    var mins = sec / 60;
+    return mins + ' minute' + (mins === 1 ? '' : 's');
+  }
+  return sec + ' second' + (sec === 1 ? '' : 's');
+}
+
+function logAction(text) {
+  var now = new Date();
+  var stamp = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+  actionLog.unshift({ text: text, stamp: stamp });
+  if (actionLog.length > 8) {
+    actionLog.pop();
+  }
+  var list = $('#action-log');
+  if (!list.length) return;
+  list.empty();
+  actionLog.forEach(function (entry) {
+    var item = $('<li class="action-item"></li>');
+    item.append('<span class="action-time">' + entry.stamp + '</span>');
+    item.append('<span class="action-text">' + entry.text + '</span>');
+    list.append(item);
+  });
+}
+
+function getRemainingMs() {
+  if (start) {
+    return start.getTime() - new Date().getTime() + delay + latency;
+  }
+  return delay;
+}
+
 function updateStatusLabel(text) {
   $('#status').text(text);
 }
@@ -82,7 +121,7 @@ function updateCatLines(state) {
   }
 }
 
-function adjust(it, v) {
+function adjust(it, v, label) {
   if (isBlink) {
     $('#timer').removeClass('blinking');
     isBlink = false;
@@ -99,6 +138,15 @@ function adjust(it, v) {
     latency = 0;
   }
   setTimerText(delay);
+  var text = label;
+  if (!text) {
+    if (it === 0) {
+      text = 'Set timer to ' + formatTime(delay);
+    } else {
+      text = (it > 0 ? 'Added ' : 'Removed ') + describeSeconds(Math.abs(it));
+    }
+  }
+  logAction(text);
 }
 
 function toggle() {
@@ -117,9 +165,11 @@ function toggle() {
   }
   if (isRun) {
     updateCatLines('running');
+    logAction('Timer started: ' + formatTime(getRemainingMs()));
     run();
   } else {
     updateCatLines('paused');
+    logAction('Timer paused with ' + formatTime(getRemainingMs()) + ' remaining');
   }
 }
 
@@ -144,6 +194,7 @@ function reset() {
   $('#timer').removeClass('blinking');
   setTimerText(delay);
   updateCatLines('paused');
+  logAction('Timer reset to ' + formatTime(delay));
 }
 
 function count() {
@@ -178,6 +229,7 @@ function finishCountdown() {
   updateStatusLabel('Feed now!');
   $('#timer').addClass('blinking');
   updateCatLines('done');
+  logAction('Timer completed - feeding time!');
 }
 
 function run() {
@@ -209,6 +261,7 @@ window.onload = function () {
   audioRemind = newAudio('audio/smb_warning.mp3');
   audioEnd = newAudio('audio/smb_mariodie.mp3');
   updateCatLines('paused');
+  logAction('Opened timer - cats are watching.');
 };
 
 window.onresize = function () {
