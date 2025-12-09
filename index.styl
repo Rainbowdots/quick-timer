@@ -1,79 +1,253 @@
+* 
+  box-sizing: border-box
+
 html, body
   margin: 0
   padding: 0
   width: 100%
   height: 100%
-  -webkit-touch-callout: none
-  -webkit-user-select: none
-  -khtml-user-select: none
-  -moz-user-select: moz-none
-  -ms-user-select: none
-  user-select: none
+  font-family: 'Helvetica Neue', 'Segoe UI', sans-serif
+  background: #0c111d
+  color: #f6f7fb
+
+.sky
+  min-height: 100vh
+  background: radial-gradient(circle at 20% 20%, #1f2a3d, #0d111b 55%),
+    radial-gradient(circle at 80% 0%, #1d2637, #0c111d 45%),
+    linear-gradient(135deg, #101728, #11192a)
+  padding: 32px 16px 48px
+
+.app
+  max-width: 1200px
+  margin: 0 auto
+  background: rgba(18, 24, 37, 0.7)
+  border: 1px solid rgba(255, 255, 255, 0.06)
+  border-radius: 18px
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.35)
+  padding: 32px
+
+.app-header
+  text-align: center
+  margin-bottom: 24px
+
+.title
+  font-size: 32px
+  font-weight: 700
+  letter-spacing: 0.5px
+
+.subtitle
+  margin-top: 10px
+  color: #cfd5ed
+  font-size: 16px
+
+.layout
+  display: grid
+  grid-template-columns: 1fr 1.15fr
+  gap: 24px
+  align-items: stretch
+
+@media (max-width: 1024px)
+  .layout
+    grid-template-columns: 1fr
+
+.cats
+  display: grid
+  gap: 18px
+
+.cat-card
+  position: relative
+  background: linear-gradient(140deg, rgba(94, 133, 255, 0.15), rgba(255, 255, 255, 0.06))
+  border: 1px solid rgba(255, 255, 255, 0.08)
+  border-radius: 16px
+  padding: 18px 18px 18px 110px
+  min-height: 130px
+  overflow: hidden
+
+.cat-card::after
+  content: ''
+  position: absolute
+  inset: 0
+  border-radius: 16px
+  pointer-events: none
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.04), 0 20px 30px rgba(0, 0, 0, 0.25)
+
+.cat-figure
+  position: absolute
+  left: 20px
+  top: 50%
+  transform: translateY(-50%)
+  width: 70px
+  height: 70px
+  border-radius: 18px
+  background: linear-gradient(145deg, #f6d365, #fda085)
+  display: grid
+  place-items: center
+  color: #111
+  font-size: 32px
+  animation: bob 5s ease-in-out infinite
+  box-shadow: 0 12px 35px rgba(253, 160, 133, 0.4)
+
+.cat-figure .cat-prop
+  position: absolute
+  bottom: -10px
+  right: -10px
+  font-size: 22px
+  background: #0f1626
+  color: #f6f7fb
+  border-radius: 50%
+  width: 36px
+  height: 36px
+  display: grid
+  place-items: center
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3)
+
+.cat-figure .cat-emoji
+  position: relative
+  z-index: 1
+  filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.2))
+
+.cat-line
+  margin: 0
+  color: #e7ecff
+  font-size: 15px
+  line-height: 1.4
+
+.cat-planner .cat-figure
+  background: linear-gradient(145deg, #9be7ff, #a29bfe)
+  box-shadow: 0 12px 35px rgba(156, 193, 255, 0.35)
+
+.cat-chef .cat-figure
+  background: linear-gradient(145deg, #ffcfdf, #fcb69f)
+
+.timer-panel
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.03))
+  border: 1px solid rgba(255, 255, 255, 0.08)
+  border-radius: 16px
+  padding: 20px
+  position: relative
+  overflow: hidden
+
+.timer-panel::before
+  content: ''
+  position: absolute
+  inset: 0
+  background: radial-gradient(circle at 30% 10%, rgba(255, 214, 165, 0.2), transparent 55%),
+    radial-gradient(circle at 80% 0%, rgba(156, 193, 255, 0.22), transparent 45%)
+  pointer-events: none
+
+.timer-header
+  display: flex
+  justify-content: space-between
+  align-items: center
+  gap: 12px
+  margin-bottom: 12px
+
+.chip
+  display: inline-flex
+  align-items: center
+  padding: 6px 12px
+  background: rgba(255, 255, 255, 0.08)
+  border-radius: 999px
+  color: #e5e9ff
+  font-weight: 600
+  letter-spacing: 0.2px
+
+.status
+  color: #9be7ff
+  font-weight: 600
 
 #timer
   width: 100%
-  height: 100%
-  line-height: 100%
-  background: #000
-  color: #fff
   text-align: center
+  font-size: 72px
   font-weight: 700
-  font-family: century gothic
+  color: #fefefe
+  margin: 10px 0 6px
+  text-shadow: 0 10px 30px rgba(0, 0, 0, 0.35)
 
-#hide, #toggle, #reset, #min10, #min60, #add10, #add60, #def10, #def30, #def60, #def180, #def300, #def600, #def900, #def1800
-  position: absolute
-  top: 5px
-  left: 50%
-  margin-left: -210px
-  width: 170px
+.timer-copy
+  text-align: center
+  color: #cfd5ed
+  margin: 0 0 18px
+
+.controls
+  background: rgba(15, 22, 38, 0.6)
+  border: 1px solid rgba(255, 255, 255, 0.05)
+  border-radius: 12px
+  padding: 12px
+  margin-top: 12px
+
+.controls.primary
+  display: flex
+  gap: 10px
+  justify-content: center
+  align-items: center
+  flex-wrap: wrap
+
+.controls .control-title
+  color: #e7ecff
+  font-weight: 600
+  margin-bottom: 8px
+
+.btn-grid
+  display: grid
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr))
+  gap: 10px
+
+.btn
+  border-radius: 10px
+  border: none
+  font-weight: 600
+  letter-spacing: 0.2px
+  transition: transform 0.1s ease, box-shadow 0.1s ease
+
+.btn:focus
+  outline: none
+  box-shadow: 0 0 0 3px rgba(155, 231, 255, 0.35)
+
+.btn:hover
+  transform: translateY(-1px)
+  box-shadow: 0 10px 18px rgba(0, 0, 0, 0.25)
+
+.btn-primary
+  background: linear-gradient(120deg, #9be7ff, #72c6ff)
+  color: #0c111d
+  border: 1px solid rgba(0, 0, 0, 0.08)
+
+.btn-default
+  background: rgba(255, 255, 255, 0.08)
+  color: #f6f7fb
+  border: 1px solid rgba(255, 255, 255, 0.12)
+
+.btn-success
+  background: linear-gradient(120deg, #a4f0c1, #8fd8b8)
+  color: #0e141f
+  border: 1px solid rgba(0, 0, 0, 0.06)
+
+.btn-info
+  background: linear-gradient(120deg, #c9c5ff, #9be7ff)
+  color: #0c111d
+  border: 1px solid rgba(0, 0, 0, 0.05)
+
+.controls.nudges .btn,
+.controls.presets .btn,
+.controls.micro .btn
   height: 44px
-  line-height: 30px
-#reset
-  margin-left: 50px
+
 #hide
-  margin-left: -30px
-  width: 70px
+  min-width: 120px
 
-#min10, #min60, #add10, #add60
-  width: 50px
+@keyframes bob
+  0%, 100%
+    transform: translateY(-50%) translateX(0)
+  50%
+    transform: translateY(calc(-50% - 8px)) translateX(2px)
 
-#def10, #def30, #def60, #def180, #def300, #def600, #def900, #def1800
-  bottom: 5px
-  top: auto
-  width: 70px
-#min10
-  margin-left: -270px
-#min60
-  margin-left: -330px
-#add10
-  margin-left: 230px
-#add60
-  margin-left: 290px
+@keyframes blink
+  0%, 90%, 100%
+    filter: brightness(1)
+  92%
+    filter: brightness(0.6)
 
-#def10
-  margin-left: -285px
-#def30
-  margin-left: -205px
-#def60
-  margin-left: -125px
-#def180
-  margin-left: -45px
-#def300
-  margin-left: 35px
-#def600
-  margin-left: 115px
-#def900
-  margin-left: 195px
-#def1800
-  margin-left: 275px
-
-#audio
-  position: absolute
-  bottom: 30px
-  right: 10px
-  z-index: 10
-
-#xxx
-  position: absolute
-  top: 10px
-  left: 10px
+.blinking
+  animation: blink 0.6s linear infinite

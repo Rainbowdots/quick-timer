@@ -1,1 +1,90 @@
-<!DOCTYPE html><html><head><meta charset="utf-8"><link rel="stylesheet" type="text/css" href="bootstrap3.min.css"><link rel="stylesheet" type="text/css" href="index.css"><script type="text/javascript" src="jquery-1.10.2.min.js"></script><script type="text/javascript" src="bootstrap3.min.js"></script><script type="text/javascript" src="index.js"></script></head><body><div id="timer">????</div><a class="btn btn-info fbtn" id="min60" onclick="adjust(-60)">-60</a><a class="btn btn-info fbtn" id="min10" onclick="adjust(-10)">-10</a><a class="btn btn-primary" id="toggle" onclick="toggle()">RUN</a><a class="btn btn-warning" id="reset" onclick="reset()">RESET</a><a class="btn btn-default" id="hide" onclick="show()">&#xd60;</a><a class="btn btn-info fbtn" id="add10" onclick="adjust(10)">+10</a><a class="btn btn-info fbtn" id="add60" onclick="adjust(60)">+60</a><a class="btn btn-success fbtn" id="def10" onclick="adjust(0,10)">10 sec</a><a class="btn btn-success fbtn" id="def30" onclick="adjust(0,30)">30 sec</a><a class="btn btn-success fbtn" id="def60" onclick="adjust(0,60)">1 min</a><a class="btn btn-success fbtn" id="def180" onclick="adjust(0,180)">3 min</a><a class="btn btn-success fbtn" id="def300" onclick="adjust(0,300)">5 min</a><a class="btn btn-success fbtn" id="def600" onclick="adjust(0,600)">10 min</a><a class="btn btn-success fbtn" id="def900" onclick="adjust(0,900)">15 min</a><a class="btn btn-success fbtn" id="def1800" onclick="adjust(0,1800)">30 min</a></body></html>
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Cat Feeding Timer</title>
+  <link rel="stylesheet" type="text/css" href="bootstrap3.min.css">
+  <link rel="stylesheet" type="text/css" href="index.css">
+  <script type="text/javascript" src="jquery-1.10.2.min.js"></script>
+  <script type="text/javascript" src="bootstrap3.min.js"></script>
+  <script type="text/javascript" src="index.js"></script>
+</head>
+<body>
+  <div class="sky">
+    <div class="app">
+      <header class="app-header">
+        <div class="title">Cat Feeding Companion</div>
+        <p class="subtitle">Time the next meal, get a playful reminder, and keep your cats happily on schedule.</p>
+      </header>
+
+      <div class="layout">
+        <section class="cats">
+          <div class="cat-card cat-chef">
+            <div class="cat-figure">
+              <span class="cat-emoji" aria-hidden="true">😺</span>
+              <span class="cat-prop" aria-hidden="true">🍲</span>
+            </div>
+            <p class="cat-line" id="cat-message-main">I'm plating dinner in style. Start the timer so I know when to serve!</p>
+          </div>
+          <div class="cat-card cat-planner">
+            <div class="cat-figure">
+              <span class="cat-emoji" aria-hidden="true">😼</span>
+              <span class="cat-prop" aria-hidden="true">📋</span>
+            </div>
+            <p class="cat-line" id="cat-message-secondary">I'll keep watch like a tiny maître d'. You'll hear from me when it's feeding time.</p>
+          </div>
+        </section>
+
+        <section class="timer-panel">
+          <div class="timer-header">
+            <span class="chip">Next feeding</span>
+            <span id="status" class="status">Paused</span>
+          </div>
+          <div id="timer" aria-live="polite">30:00</div>
+          <p class="timer-copy">Pick a preset or nudge the time while your human-like cats sip tea and read the menu.</p>
+
+          <div class="controls primary">
+            <button class="btn btn-primary" id="toggle" onclick="toggle()">Start</button>
+            <button class="btn btn-default" id="reset" onclick="reset()">Reset</button>
+            <button class="btn btn-default" id="hide" onclick="show()">Hide nudges</button>
+          </div>
+
+          <div class="controls presets">
+            <div class="control-title">Meal presets</div>
+            <div class="btn-grid">
+              <button class="btn btn-success fbtn" id="preset-snack" onclick="adjust(0,900)">Quick snack · 15m</button>
+              <button class="btn btn-success fbtn" id="preset-breakfast" onclick="adjust(0,1800)">Breakfast · 30m</button>
+              <button class="btn btn-success fbtn" id="preset-lunch" onclick="adjust(0,3600)">Lunch · 1h</button>
+              <button class="btn btn-success fbtn" id="preset-dinner" onclick="adjust(0,14400)">Dinner · 4h</button>
+            </div>
+          </div>
+
+          <div class="controls nudges">
+            <div class="control-title">Nudges</div>
+            <div class="btn-grid">
+              <button class="btn btn-info fbtn" id="min300" onclick="adjust(-300)">-5 min</button>
+              <button class="btn btn-info fbtn" id="min60" onclick="adjust(-60)">-1 min</button>
+              <button class="btn btn-info fbtn" id="add60" onclick="adjust(60)">+1 min</button>
+              <button class="btn btn-info fbtn" id="add300" onclick="adjust(300)">+5 min</button>
+            </div>
+          </div>
+
+          <div class="controls micro">
+            <div class="control-title">Fine tune</div>
+            <div class="btn-grid">
+              <button class="btn btn-success fbtn" onclick="adjust(0,300)">Tea break · 5m</button>
+              <button class="btn btn-success fbtn" onclick="adjust(0,600)">Stretch · 10m</button>
+              <button class="btn btn-success fbtn" onclick="adjust(0,900)">Story time · 15m</button>
+              <button class="btn btn-success fbtn" onclick="adjust(0,1200)">Nap · 20m</button>
+              <button class="btn btn-success fbtn" onclick="adjust(0,1500)">Grooming · 25m</button>
+              <button class="btn btn-success fbtn" onclick="adjust(0,1800)">Plate prep · 30m</button>
+              <button class="btn btn-success fbtn" onclick="adjust(0,2400)">Patrol · 40m</button>
+              <button class="btn btn-success fbtn" onclick="adjust(0,3600)">Window watch · 1h</button>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
